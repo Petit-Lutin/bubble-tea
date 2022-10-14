@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bubble Tea</title>
+</head>
+<body>
+    
+    <script src="https://unpkg.com/vue@3"></script>
+
+    <div id="app">
+        
+        
+        {{ message }}
+
+        <!-- <button @click="$emit('changeColor')">
+          dfghjkl
+          </button> -->
+<li v-for="tea in teas">
+    {{ tea.flavour }}
+  </li>
+
+  <li v-for="sirup in sirups">
+    {{ sirup.flavour }}
+  </li>
+
+  <li v-for="bobba in bobbas">
+    {{ bobba.flavour }}
+  </li>
+    </div>
+    
+    <script>
+// import { createApp } from 'vue'
+
+      Vue.createApp({
+        data() {
+          return {
+            teas: [{ flavour: 'green' }, { flavour: 'rooibos' }, { flavour: 'black' }],
+            sirups: [{ flavour: 'peach' }, { flavour: 'chocolate' }, { flavour: 'citrus' }],
+            bobbas: [  { flavour: 'tapioca' }, { flavour: 'cherry' }, { flavour: 'yoghurt' }],
+            message: 'Hello Vue!'
+          }
+        }
+      }).mount('#app')
+
+    </script>
+
+</body>
+</html>
