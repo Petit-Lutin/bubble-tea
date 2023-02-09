@@ -5,12 +5,20 @@ export default {
       pickedTea:'',
       pickedSirup:'',
       pickedTopping:'',
-      teas: [{ flavour: 'black tea' }, { flavour: 'green tea' }, {flavour:'rooibos'}],
+      teas: [{ flavour: 'black tea' , color: 'brown'}, { flavour: 'green tea' , color:'green'}, {flavour:'rooibos', color:'orange'}],
       sirups: [{ flavour: 'peach'}, {flavour: 'chocolate'}, {flavour: 'citrus'}],
       toppings: [{flavour: 'tapioca'}, {flavour: 'cherry'}, {flavour: 'yoghurt'}],
+      teaColor:'black'
 
     }
-  }
+  },
+    methods: {
+      getTeaColor(event){
+        //console.log(event.target.getAttribute('data-color'))
+        this.teaColor = event.target.getAttribute('data-color');
+
+      }
+    }
 }
 </script>
 
@@ -18,8 +26,8 @@ export default {
 
 <div class="">Pick a tea</div>
   <template v-for="tea in teas">
-    <input type="radio" :id="tea.flavour" :value="tea.flavour" name="tea" v-model="pickedTea" />
-	  <label :for="tea.flavour"> {{tea.flavour}}</label>
+    <input @click="getTeaColor" type="radio" :id="tea.flavour" :value="tea.flavour" :data-color="tea.color" name="tea" v-model="pickedTea" />
+	  <span :style="{ 'color': tea.color}"><label :for="tea.flavour"> {{tea.flavour}}</label></span>
   </template>
 
   <div class="">Pick a sirup</div>
@@ -35,6 +43,24 @@ export default {
   </template>
 
 <!-- result -->
-<div class="">Your bubble tea :  {{ pickedTea }} +  {{ pickedSirup }} sirup +  {{ pickedTopping }} topping !</div>
+
+<div class="">
+  <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="pickedTea">{{ pickedTea }}</span>   <span v-if="pickedSirup">+ {{ pickedSirup }} sirup</span> 
+  <span v-if="pickedTopping">+  {{ pickedTopping }} topping ! </span>
+
+  <div class="resultTea" style="width:150px;height:300px">
+    <div class="resultSirup" style="width:150px;height:200px"></div>
+    <div class="resultTopping" style="width:150px;height:75px"></div>
+
+  </div>
+
+</div>
 
 </template>
+
+<style scoped>
+.resultTea{
+  /*  */
+}
+
+</style>
