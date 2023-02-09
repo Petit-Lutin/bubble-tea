@@ -2,11 +2,10 @@
 export default {
   data() {
     return {
-      //picked: 'One',
       pickedTea:'',
       pickedSirup:'',
-      pickedBobba:'',
-      teas: [{ flavour: 'black' }, { flavour: 'green' }, {flavour:'rooibos'}],
+      pickedTopping:'',
+      teas: [{ flavour: 'black tea' }, { flavour: 'green tea' }, {flavour:'rooibos'}],
       sirups: [{ flavour: 'peach'}, {flavour: 'chocolate'}, {flavour: 'citrus'}],
       toppings: [{flavour: 'tapioca'}, {flavour: 'cherry'}, {flavour: 'yoghurt'}],
 
@@ -17,36 +16,25 @@ export default {
 
 <template>
 
-
-  <li v-for="tea in teas">
-  {{ tea.flavour }}
-</li>
-
-<li v-for="sirup in sirups">
-  {{ sirup.flavour }}
-</li>
-
-<li v-for="topping in toppings">
-  {{ topping.flavour }}
-</li>
 <div class="">Pick a tea</div>
-<div>Picked: {{ pickedTea }}</div>
   <template v-for="tea in teas">
-    
     <input type="radio" :id="tea.flavour" :value="tea.flavour" name="tea" v-model="pickedTea" />
-	<label :for="tea.flavour"> {{tea.flavour}}</label>
+	  <label :for="tea.flavour"> {{tea.flavour}}</label>
   </template>
 
+  <div class="">Pick a sirup</div>
+  <template v-for="sirup in sirups">
+    <input type="radio" :id="sirup.flavour" :value="sirup.flavour" name="sirup" v-model="pickedSirup" />
+	  <label :for="sirup.flavour"> {{sirup.flavour}}</label>
+  </template>
 
+  <div class="">Pick a topping</div>
+  <template v-for="topping in toppings">
+    <input type="radio" :id="topping.flavour" :value="topping.flavour" name="topping" v-model="pickedTopping" />
+	  <label :for="topping.flavour"> {{topping.flavour}}</label>
+  </template>
 
+<!-- result -->
+<div class="">Your bubble tea :  {{ pickedTea }} +  {{ pickedSirup }} sirup +  {{ pickedTopping }} topping !</div>
 
-
-
-
-<div>Picked: {{ picked }}</div>
-	<input type="radio" id="one" value="One" v-model="picked" />
-	<label for="one">One</label>
-
-	<input type="radio" id="two" value="Two" v-model="picked" />
-	<label for="two">Two</label>
 </template>
