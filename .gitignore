@@ -26,3 +26,7 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+bubbletea.svg
+croquis.pdf
+screenshots/
