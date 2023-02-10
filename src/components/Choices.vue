@@ -35,30 +35,40 @@ export default {
 
 <template>
 
-<div class="">Pick a tea</div>
-  <template v-for="tea in teas">
-    <input type="radio" :id="tea.flavour" :value="tea.flavour" :data-color="tea.color" name="tea" v-model="pickedTea" @click="getTeaColor"/>
-	  <span :style="{ 'color': tea.color}"><label :for="tea.flavour"> {{tea.flavour}}</label></span>
-  </template>
+<div class="menu">
+  <div class="ingredient">Pick a tea
+    <div class="pick">
+      <template v-for="tea in teas">
+        <input type="radio" :id="tea.flavour" :value="tea.flavour" :data-color="tea.color" name="tea" v-model="pickedTea" @click="getTeaColor"/>
+          <span :style="{ 'color': tea.color}"><label :for="tea.flavour"> {{tea.flavour}}</label></span>
+      </template>
+    </div>
+  </div>
+    <div class="ingredient">Pick a sirup
+    <div class="pick">
+      <template v-for="sirup in sirups">
+        <input type="radio" :id="sirup.flavour" :value="sirup.flavour" :data-color="sirup.color" name="sirup" v-model="pickedSirup" @click="getSirupColor"/>
+          <span :style="{ 'color': sirup.color}"><label :for="sirup.flavour"> {{sirup.flavour}}</label></span>
+      </template>
+    </div>
+  </div>
+    <div class="ingredient">Pick a topping
+    <div class="pick">
+      <template v-for="topping in toppings">
+        <input type="radio" :id="topping.flavour" :value="topping.flavour" :data-color="topping.color"  name="topping" v-model="pickedTopping" @click="getToppingColor"/>
+          <span :style="{ 'color': topping.color}"><label :for="topping.flavour"> {{topping.flavour}}</label></span>
+      </template>
+    </div>
+  </div>
+  
+</div>
 
-  <div class="">Pick a sirup</div>
-  <template v-for="sirup in sirups">
-    <input type="radio" :id="sirup.flavour" :value="sirup.flavour" :data-color="sirup.color" name="sirup" v-model="pickedSirup" @click="getSirupColor"/>
-	  <span :style="{ 'color': sirup.color}"><label :for="sirup.flavour"> {{sirup.flavour}}</label></span>
-  </template>
-
-  <div class="">Pick a topping</div>
-  <template v-for="topping in toppings">
-    <input type="radio" :id="topping.flavour" :value="topping.flavour" :data-color="topping.color"  name="topping" v-model="pickedTopping" @click="getToppingColor"/>
-	  <span :style="{ 'color': topping.color}"><label :for="topping.flavour"> {{topping.flavour}}</label></span>
-  </template>
-
-  <button v-if="pickedTea, pickedSirup, pickedTopping" @click="finished=true">Order</button>
+<button v-if="pickedTea, pickedSirup, pickedTopping" @click="finished=true">Order</button>
 <!-- result -->
 
 <div class="">
-  <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="pickedTea">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="pickedSirup"  >+ {{ pickedSirup }} sirup</span> 
-  <span :style="{ 'color': toppingColor}" v-if="pickedTopping" >+  {{ pickedTopping }} topping ! </span>
+  <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="pickedTea">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="pickedSirup"  > <br>+ {{ pickedSirup }} sirup</span> 
+  <span :style="{ 'color': toppingColor}" v-if="pickedTopping" > <br> +  {{ pickedTopping }} topping ! </span>
 
 
 </div>
@@ -370,27 +380,36 @@ export default {
 </template>
 
 <style scoped>
-
-.result{
-  display: flex;
-  flex-direction: column;
- justify-content:flex-end;
- width:150px;
- height:300px;
-
+.menu{
+  padding: 15px;
+  border-radius: 10px;  
+  background: #f9e7f5;
 }
-.resultTea{
-  width:150px;
-  height:300px;
+.ingredient{
+  margin-bottom: 20px;
 }
-
-.resultSirup{
-  width:150px;
-  height:200px;
+.pick
+{
+  padding-top: 5px;
+  display:flex;
+  justify-content: space-between;
+  flex:100%;
 }
 
-.resultTopping{
-  width:150px;
-  height:75px;
+.pick label, button{
+  padding:5px 10px;
+  background:  #fbb5e0;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+.pick label:hover, .pick label:active{
+  background: #ca75a9;
+}
+
+input[type=radio]{
+  display:none;
+}
+
 </style>
