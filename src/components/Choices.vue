@@ -10,7 +10,8 @@ export default {
       pickedTopping:'',
       teaColor:'',
       sirupColor:'',
-      toppingColor:''
+      toppingColor:'',
+      finished:false
     }
   },
     methods: {
@@ -52,17 +53,13 @@ export default {
 	  <span :style="{ 'color': topping.color}"><label :for="topping.flavour"> {{topping.flavour}}</label></span>
   </template>
 
+  <button v-if="pickedTea, pickedSirup, pickedTopping" @click="finished=true">Order</button>
 <!-- result -->
 
 <div class="">
   <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="pickedTea">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="pickedSirup"  >+ {{ pickedSirup }} sirup</span> 
   <span :style="{ 'color': toppingColor}" v-if="pickedTopping" >+  {{ pickedTopping }} topping ! </span>
 
-  <div class="result">
-    <div class="resultTea" :style="{ 'background': teaColor}"> </div>
-      <div class="resultSirup" :style="{ 'background': sirupColor}"></div>
-      <div class="resultTopping" :style="{ 'background': toppingColor}"></div>
-  </div>
 
 </div>
 
@@ -337,7 +334,7 @@ export default {
          style="opacity:0.98999999;/*fill:#803541;*/fill-opacity:1;stroke:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:fill markers stroke" /></g></g><g
      inkscape:groupmode="layer"
      id="layer5"
-     inkscape:label="straw" v-if="pickedTopping"
+     inkscape:label="straw" v-if="finished"
      style="display:inline;opacity:1"
      transform="translate(-304.37316,-318.89494)"><g
        id="g4693"><path
@@ -369,22 +366,6 @@ export default {
            sodipodi:nodetypes="cc" /></g></g></g></svg>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </template>
 
