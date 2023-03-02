@@ -19,24 +19,39 @@ export default {
         //console.log(event.target.getAttribute('data-color'))
         this.teaColor = event.target.getAttribute('data-color');
       },
-
       getSirupColor(event){
         //console.log(event.target.getAttribute('data-color'))
         this.sirupColor = event.target.getAttribute('data-color');
       },
-
       getToppingColor(event){
         //console.log(event.target.getAttribute('data-color'))
         this.toppingColor = event.target.getAttribute('data-color');
       }
-    }
+    },
+    computed: {
+      isTeaSelected() {
+        if (this.pickedTea != ''){
+          return true;
+        }
+    },
+    isSirupAfterTeaSelected() {
+        if (this.pickedTea != '' && this.pickedSirup != ''){
+          return true;
+        }
+    }, 
+    isToppingAfterSirupAndTeaSelected() {
+        if (this.pickedTea != '' && this.pickedSirup != '' && this.pickedTopping != ''){
+          return true;
+        }
+    },
+  }
 }
 </script>
 
 <template>
 
 <div class="menu">
-  <div class="ingredient">Pick a tea
+  <div class="ingredient">1. Pick a tea
     <div class="pick">
       <template v-for="tea in teas">
         <input type="radio" :id="tea.flavour" :value="tea.flavour" :data-color="tea.color" name="tea" v-model="pickedTea" @click="getTeaColor"/>
@@ -44,7 +59,7 @@ export default {
       </template>
     </div>
   </div>
-    <div class="ingredient">Pick a sirup
+    <div class="ingredient">2. Pick a sirup
     <div class="pick">
       <template v-for="sirup in sirups">
         <input type="radio" :id="sirup.flavour" :value="sirup.flavour" :data-color="sirup.color" name="sirup" v-model="pickedSirup" @click="getSirupColor"/>
@@ -52,7 +67,7 @@ export default {
       </template>
     </div>
   </div>
-    <div class="ingredient">Pick a topping
+    <div class="ingredient">3. Pick a topping
     <div class="pick">
       <template v-for="topping in toppings">
         <input type="radio" :id="topping.flavour" :value="topping.flavour" :data-color="topping.color"  name="topping" v-model="pickedTopping" @click="getToppingColor"/>
@@ -63,12 +78,12 @@ export default {
   
 </div>
 
-<button v-if="pickedTea, pickedSirup, pickedTopping" @click="finished=true">Order</button>
+<button v-if="isToppingAfterSirupAndTeaSelected" @click="finished=true">Order</button>
 <!-- result -->
 
 <div class="">
-  <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="pickedTea">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="pickedSirup"  > <br>+ {{ pickedSirup }} sirup</span> 
-  <span :style="{ 'color': toppingColor}" v-if="pickedTopping" > <br> +  {{ pickedTopping }} topping ! </span>
+  <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="isTeaSelected">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="isSirupAfterTeaSelected"  > + {{ pickedSirup }} sirup</span> 
+  <span :style="{ 'color': toppingColor}" v-if="isToppingAfterSirupAndTeaSelected" >  +  {{ pickedTopping }} topping ! </span>
 
 
 </div>
@@ -131,7 +146,7 @@ export default {
   
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="tea" v-if="pickedTea"
+     inkscape:label="tea" v-if="isTeaSelected"
      style="display:inline"
      transform="translate(-304.37316,-318.89494)"><path class="backgroundTea"
      :style="{ 'fill': teaColor}" style="display:inline;filter:brightness(65%);/*fill:#00a476;*/fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -143,7 +158,7 @@ export default {
        d="m 310.7817,463.03662 c -0.42988,6.43742 7.02047,24.05465 37.58354,11.13027 26.27143,-11.10954 37.79617,8.13829 60.25778,-1.77842 10.6361,-4.69579 36.44688,4.32954 45.11394,-6.97287 l -25.70739,177.41658 c -0.22952,13.14319 -90.03971,12.90893 -93.67431,-0.0742 z"
        id="path4499"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="csscccc" /></g><g v-if="pickedSirup"
+       sodipodi:nodetypes="csscccc" /></g><g v-if="isSirupAfterTeaSelected"
      style="display:inline"
      inkscape:label="sirup"
      id="g4510"
@@ -182,7 +197,7 @@ export default {
          style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" /></g></g><g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="toppings" v-if="pickedTopping"
+     inkscape:label="toppings" v-if="isToppingAfterSirupAndTeaSelected"
      transform="translate(-304.37316,-318.89494)"
      :style="{ 'fill': toppingColor}"
      style="display:inline"><g
@@ -395,7 +410,6 @@ export default {
   justify-content: space-between;
   flex:100%;
 }
-
 .pick label, button{
   padding:5px 10px;
   background:  #fbb5e0;
@@ -403,13 +417,10 @@ export default {
   border-radius: 5px;
   cursor: pointer;
 }
-
 .pick label:hover, .pick label:active{
   background: #ca75a9;
 }
-
 input[type=radio]{
   display:none;
 }
-
 </style>
