@@ -51,40 +51,37 @@ export default {
 <template>
 
 <div class="menu">
-  <div class="ingredient">1. Pick a tea
+  <div class="ingredient">1. Pick a tea <span v-if="pickedTea"><i class="fa fa-check" aria-hidden="true"></i></span>
     <div class="pick">
       <template v-for="tea in teas">
         <input type="radio" :id="tea.flavour" :value="tea.flavour" :data-color="tea.color" name="tea" v-model="pickedTea" @click="getTeaColor"/>
           <label :for="tea.flavour"> {{tea.flavour}} 
             <span :style="{ 'color': tea.color }">
               <i class="fa fa-circle" aria-hidden="true"></i>
-              <i class="fa fa-check" aria-hidden="true"></i>
             </span>
           </label>
       </template>
     </div>
   </div>
-    <div class="ingredient">2. Pick a sirup
+    <div class="ingredient">2. Pick a sirup <span v-if="pickedSirup"><i class="fa fa-check" aria-hidden="true"></i></span>
     <div class="pick">
       <template v-for="sirup in sirups">
         <input type="radio" :id="sirup.flavour" :value="sirup.flavour" :data-color="sirup.color" name="sirup" v-model="pickedSirup" @click="getSirupColor"/>
           <label :for="sirup.flavour"> {{sirup.flavour}}
             <span :style="{ 'color': sirup.color}">
               <i class="fa fa-circle" aria-hidden="true"></i>
-              <i class="fa fa-check" aria-hidden="true"></i>
             </span>
           </label>
       </template>
     </div>
   </div>
-    <div class="ingredient">3. Pick a topping
+    <div class="ingredient">3. Pick a topping <span v-if="pickedTopping"><i class="fa fa-check" aria-hidden="true"></i></span>
     <div class="pick">
       <template v-for="topping in toppings">
         <input type="radio" :id="topping.flavour" :value="topping.flavour" :data-color="topping.color"  name="topping" v-model="pickedTopping" @click="getToppingColor"/>
           <label :for="topping.flavour"> {{topping.flavour}}
             <span :style="{ 'color': topping.color}">
               <i class="fa fa-circle" aria-hidden="true"></i>
-              <i class="fa fa-check" aria-hidden="true"></i>
             </span>
           </label>
       </template>
@@ -103,7 +100,8 @@ export default {
     <span :style="{ 'color': toppingColor}" v-if="isToppingAfterSirupAndTeaSelected" >  +  {{ pickedTopping }} topping ! </span>
  </div>
 
-  <button v-if="isToppingAfterSirupAndTeaSelected" @click="finished=true">Order</button>
+  <button v-if="isToppingAfterSirupAndTeaSelected" @click="finished=true">Order <i class="fa fa-check" aria-hidden="true"></i>
+</button>
 
 </div>
 
@@ -422,25 +420,6 @@ export default {
 .ingredient{
   margin-bottom: 20px;
 }
-
-.ingredient input[type="radio"]+label .fa.fa-circle{
-  display: inline;
-  font-size:0.8em;
-}
-
-.ingredient input[type="radio"]+label .fa.fa-check{
-  display: none;
-}
-.ingredient input[type="radio"]:checked+label .fa.fa-circle{
-  display: none;
-}
-
-.ingredient input[type="radio"]:checked+label .fa.fa-check{
-  display: inline;
-  font-size:1.7em;
-}
-
-
 .pick
 {
   padding-top: 5px;
@@ -455,10 +434,32 @@ export default {
   border-radius: 5px;
   cursor: pointer;
 }
-.pick label:hover, .pick label:active{
+.pick label:hover, .pick input[type="radio"]:checked+label{
   background: #ca75a9;
+  color:white;
 }
 input[type=radio]{
   display:none;
+}
+.pick input[type="radio"]+label .fa.fa-circle{
+  display: inline;
+  font-size:0.8em;
+}
+
+.pick input[type="radio"]+label .fa.fa-check{
+  display: none;
+}
+.pick input[type="radio"]:checked+label .fa.fa-circle{
+  /* display: none; */
+}
+
+/* .pick input[type="radio"]:checked+label .fa.fa-check{
+  display: inline;
+  font-size:1.7em;
+} */
+
+.menu .fa.fa-check{
+  color:green;
+  font-size: 1.2em;
 }
 </style>
