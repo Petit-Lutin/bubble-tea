@@ -11,7 +11,7 @@ import Choices from './components/Choices.vue'
     <!-- <div class="wrapper">
       <HelloWorld msg="You did it!" />
     </div> -->
-    Order your bubble tea!
+      <h2>Order your bubble tea! </h2> <img src="/public/bubbletea_final.svg" width="25">
   </header>
 
   <main>
@@ -35,7 +35,11 @@ header {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 10px;
+    /* padding-right: calc(var(--section-gap) / 2); */
   }
 
   .logo {

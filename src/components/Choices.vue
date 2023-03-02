@@ -2,9 +2,9 @@
 export default {
   data() {
     return {
-      teas: [{ flavour: 'black tea' , color: 'brown'}, { flavour: 'green tea' , color:'green'}, {flavour:'rooibos', color:'orange'}],
-      sirups: [{ flavour: 'peach', color:'pink'}, {flavour: 'chocolate', color:'chocolate'}, {flavour: 'citrus', color:'yellow'}],
-      toppings: [{flavour: 'tapioca', color:'light brown'}, {flavour: 'cherry', color:'red'}, {flavour: 'yoghurt', color:'wheat'}],
+      teas: [{ flavour: 'Black tea' , color: 'brown'}, { flavour: 'Green tea' , color:'green'}, {flavour:'Rooibos', color:'orange'}],
+      sirups: [{ flavour: 'Peach', color:'#db6277'}, {flavour: 'Chocolate', color:'chocolate'}, {flavour: 'Citrus', color:'yellow'}],
+      toppings: [{flavour: 'Tapioca', color:'light brown'}, {flavour: 'Cherry', color:'red'}, {flavour: 'Yoghurt', color:'wheat'}],
       pickedTea:'',
       pickedSirup:'',
       pickedTopping:'',
@@ -55,7 +55,12 @@ export default {
     <div class="pick">
       <template v-for="tea in teas">
         <input type="radio" :id="tea.flavour" :value="tea.flavour" :data-color="tea.color" name="tea" v-model="pickedTea" @click="getTeaColor"/>
-          <span :style="{ 'color': tea.color}"><label :for="tea.flavour"> {{tea.flavour}}</label></span>
+          <label :for="tea.flavour"> {{tea.flavour}} 
+            <span :style="{ 'color': tea.color }">
+              <i class="fa fa-circle" aria-hidden="true"></i>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </span>
+          </label>
       </template>
     </div>
   </div>
@@ -63,7 +68,12 @@ export default {
     <div class="pick">
       <template v-for="sirup in sirups">
         <input type="radio" :id="sirup.flavour" :value="sirup.flavour" :data-color="sirup.color" name="sirup" v-model="pickedSirup" @click="getSirupColor"/>
-          <span :style="{ 'color': sirup.color}"><label :for="sirup.flavour"> {{sirup.flavour}}</label></span>
+          <label :for="sirup.flavour"> {{sirup.flavour}}
+            <span :style="{ 'color': sirup.color}">
+              <i class="fa fa-circle" aria-hidden="true"></i>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </span>
+          </label>
       </template>
     </div>
   </div>
@@ -71,20 +81,29 @@ export default {
     <div class="pick">
       <template v-for="topping in toppings">
         <input type="radio" :id="topping.flavour" :value="topping.flavour" :data-color="topping.color"  name="topping" v-model="pickedTopping" @click="getToppingColor"/>
-          <span :style="{ 'color': topping.color}"><label :for="topping.flavour"> {{topping.flavour}}</label></span>
+          <label :for="topping.flavour"> {{topping.flavour}}
+            <span :style="{ 'color': topping.color}">
+              <i class="fa fa-circle" aria-hidden="true"></i>
+              <i class="fa fa-check" aria-hidden="true"></i>
+            </span>
+          </label>
       </template>
     </div>
   </div>
   
 </div>
 
-<button v-if="isToppingAfterSirupAndTeaSelected" @click="finished=true">Order</button>
+
 <!-- result -->
+<div class="" v-if="isTeaSelected">
 
-<div class="">
-  <br> Your bubble tea : <span :style="{ 'color': teaColor}" v-if="isTeaSelected">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="isSirupAfterTeaSelected"  > + {{ pickedSirup }} sirup</span> 
-  <span :style="{ 'color': toppingColor}" v-if="isToppingAfterSirupAndTeaSelected" >  +  {{ pickedTopping }} topping ! </span>
+ <div class="">
+   Your bubble tea : <br>
+   <span :style="{ 'color': teaColor}" v-if="isTeaSelected">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="isSirupAfterTeaSelected"  > + {{ pickedSirup }} sirup</span>
+    <span :style="{ 'color': toppingColor}" v-if="isToppingAfterSirupAndTeaSelected" >  +  {{ pickedTopping }} topping ! </span>
+ </div>
 
+  <button v-if="isToppingAfterSirupAndTeaSelected" @click="finished=true">Order</button>
 
 </div>
 
@@ -403,6 +422,25 @@ export default {
 .ingredient{
   margin-bottom: 20px;
 }
+
+.ingredient input[type="radio"]+label .fa.fa-circle{
+  display: inline;
+  font-size:0.8em;
+}
+
+.ingredient input[type="radio"]+label .fa.fa-check{
+  display: none;
+}
+.ingredient input[type="radio"]:checked+label .fa.fa-circle{
+  display: none;
+}
+
+.ingredient input[type="radio"]:checked+label .fa.fa-check{
+  display: inline;
+  font-size:1.7em;
+}
+
+
 .pick
 {
   padding-top: 5px;
