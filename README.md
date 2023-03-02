@@ -2,7 +2,7 @@
 
 ## A project with Vue.js and svg
 
-![img](bubbletea_final.svg) 
+![img](/public/bubbletea_final.svg) 
 
 Have you ever drank bubble teas? If yes, you know they can be customized. If no,  it's a cold beverage where you can customize almost anything.
 
