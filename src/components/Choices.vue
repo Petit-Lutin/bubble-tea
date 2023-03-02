@@ -11,6 +11,7 @@ export default {
       teaColor:'',
       sirupColor:'',
       toppingColor:'',
+      confirm:false,
       finished:false
     }
   },
@@ -26,6 +27,19 @@ export default {
       getToppingColor(event){
         //console.log(event.target.getAttribute('data-color'))
         this.toppingColor = event.target.getAttribute('data-color');
+      },
+      restart(){
+        let radios = document.querySelectorAll('.pick input');
+        for(let i = 0; i < radios.length; i++) {
+          radios[i].checked = false;
+        }
+        this.pickedTea='';
+        this.pickedSirup='';
+        this.pickedTopping='';
+        this.teaColor='';
+        this.sirupColor='';
+        this.toppingColor='';
+        this.finished=false;
       }
     },
     computed: {
@@ -43,7 +57,7 @@ export default {
         if (this.pickedTea != '' && this.pickedSirup != '' && this.pickedTopping != ''){
           return true;
         }
-    },
+    }
   }
 }
 </script>
@@ -90,18 +104,20 @@ export default {
     </div>
   
 
-    <div class="text-result" v-if="isTeaSelected">
+    <div class="text-result" v-if="isToppingAfterSirupAndTeaSelected">
   
       <div class="">
-        Your bubble tea : <br>
-        <span :style="{ 'color': teaColor}" v-if="isTeaSelected">{{ pickedTea }}</span>   <span :style="{ 'color': sirupColor}" v-if="isSirupAfterTeaSelected"  > + {{ pickedSirup }} sirup</span>
-          <span :style="{ 'color': toppingColor}" v-if="isToppingAfterSirupAndTeaSelected" >  +  {{ pickedTopping }} topping ! </span>
+        Your bubble tea is ready!
       </div>
 
-        <button v-if="isToppingAfterSirupAndTeaSelected" @click="finished=true">Order <i class="fa fa-check" aria-hidden="true"></i>
-      </button>
+      <div class="confirm-or-cancel">
+          <input type="radio" id="confirm" value="confirm"  name="confirm" v-model="confirm" @click="finished=true"/>
+            <label for="confirm"> Order <i class="fa fa-check" aria-hidden="true"></i>  </label>
 
+            <input type="radio" id="cancel" value="cancel"  name="confirm" v-model="confirm" @click="restart()"/>
+            <label for="cancel"> Cancel <i class="fa fa-check" aria-hidden="true"></i>   </label>
       </div>
+    </div>
   </div>
   
   <div class="result-panel">
