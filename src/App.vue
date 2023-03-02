@@ -19,6 +19,10 @@ import Choices from './components/Choices.vue'
     <Choices />
     
   </main>
+
+  <footer>
+    Made by <a href="https://laurenceplatzer.com">Laurence Platzer</a> with <i class="fa fa-music" aria-hidden="true"></i> and <a href="https://vuejs.org/">Vue.js</a> - Code on <a href="https://github.com/Petit-Lutin/bubble-tea">Github <i class="fa fa-github" aria-hidden="true"></i></a>
+  </footer>
 </template>
 
 <style scoped>
@@ -26,17 +30,14 @@ header {
   line-height: 1.5;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: first baseline;
   padding-bottom: 10px;
-
 }
 
 .logo {
   display: block;
   margin: 0 auto 2rem;
 }
-
-
 
 @media (min-width: 1024px) {
   header {

@@ -12,13 +12,18 @@
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+  /* color: hsla(160, 100%, 37%, 1); */
+  color: #ac4584;
+  transition: 0.1s;
 }
 
+footer{
+  text-align: center;
+}
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    /* background-color: hsla(160, 100%, 37%, 0.2); */
+    border-bottom:2px solid #ca75a9;
   }
 }
 

@@ -432,8 +432,6 @@ export default {
 </template>
 
 <style scoped>
-
-
 .menu{
   padding: 15px;
   border-radius: 10px;  
