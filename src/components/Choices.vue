@@ -4,7 +4,7 @@ export default {
     return {
       teas: [{ flavour: 'Black tea' , color: 'brown'}, { flavour: 'Green tea' , color:'green'}, {flavour:'Rooibos', color:'orange'}],
       sirups: [{ flavour: 'Peach', color:'#db6277'}, {flavour: 'Chocolate', color:'chocolate'}, {flavour: 'Citrus', color:'yellow'}],
-      toppings: [{flavour: 'Tapioca', color:'light brown'}, {flavour: 'Cherry', color:'red'}, {flavour: 'Yoghurt', color:'wheat'}],
+      toppings: [{flavour: 'Tapioca', color:'#99754f'}, {flavour: 'Cherry', color:'#bb2541'}, {flavour: 'Yoghurt', color:'wheat'}],
       pickedTea:'',
       pickedSirup:'',
       pickedTopping:'',
@@ -16,15 +16,12 @@ export default {
   },
     methods: {
       getTeaColor(event){
-        //console.log(event.target.getAttribute('data-color'))
         this.teaColor = event.target.getAttribute('data-color');
       },
       getSirupColor(event){
-        //console.log(event.target.getAttribute('data-color'))
         this.sirupColor = event.target.getAttribute('data-color');
       },
       getToppingColor(event){
-        //console.log(event.target.getAttribute('data-color'))
         this.toppingColor = event.target.getAttribute('data-color');
       },
       restart(){
