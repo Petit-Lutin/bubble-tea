@@ -11,7 +11,6 @@ export default {
       teaColor:'',
       sirupColor:'',
       toppingColor:'',
-      confirm:false,
       finished:false
     }
   },
@@ -111,11 +110,11 @@ export default {
       </div>
 
       <div class="confirm-or-cancel">
-          <input type="radio" id="confirm" value="confirm"  name="confirm" v-model="confirm" @click="finished=true"/>
+          <input type="radio" id="confirm" value="confirm"  name="confirm"  @click="finished=true"/>
             <label for="confirm"> Order <i class="fa fa-check" aria-hidden="true"></i>  </label>
 
-            <input type="radio" id="cancel" value="cancel"  name="confirm" v-model="confirm" @click="restart()"/>
-            <label for="cancel"> Cancel <i class="fa fa-check" aria-hidden="true"></i>   </label>
+            <input type="radio" id="cancel" value="cancel"  name="confirm"  @click="restart()"/>
+            <label for="cancel"> Cancel <i class="fa fa-times" aria-hidden="true"></i>   </label>
       </div>
     </div>
   </div>
@@ -440,6 +439,7 @@ export default {
   border-radius: 10px;  
   background: #f9e7f5;
   min-height:390px;
+  margin-bottom:20px;
 }
 .ingredient{
   margin-bottom: 20px;
@@ -451,26 +451,13 @@ export default {
   justify-content: space-between;
   flex:100%;
 }
-.pick label, button{
+.pick label, button, .confirm-or-cancel label{
   padding:5px 10px;
   background:  #fbb5e0;
   margin-right: 5px;
   border-radius: 5px;
   cursor: pointer;
-}
-
-button{
-  padding:8px 15px;
-  border-radius: 5px;
-  border:1px solid #fbb5e0;
-  /* box-shadow: ; */
-
-}
-
-button:hover, button:active{
-  background: #ca75a9;
-  border:1px solid #ca75a9;
-
+  text-align: center;
 }
 .pick label:hover, .pick input[type="radio"]:checked+label{
   background: #ca75a9;
@@ -484,17 +471,20 @@ input[type=radio]{
   font-size:0.8em;
 }
 
-.pick input[type="radio"]+label .fa.fa-check{
-  display: none;
+.text-result{
+  font-size:1.2em;
 }
-.pick input[type="radio"]:checked+label .fa.fa-circle{
-  /* display: none; */
+.confirm-or-cancel{
+  padding:15px 0;
+}
+.confirm-or-cancel label:hover, .confirm-or-cancel input[type="radio"]:checked+label{
+  background: #ca75a9;
+  color:white;
 }
 
-/* .pick input[type="radio"]:checked+label .fa.fa-check{
-  display: inline;
-  font-size:1.7em;
-} */
+.fa.fa-times{
+  color:darkred;
+}
 
 .menu .fa.fa-check{
   color:green;
@@ -504,12 +494,10 @@ input[type=radio]{
 .result-panel{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .text-result{
   height:100px;
-}
-
-.illustrated-result{
-  text-align: center;
 }
 </style>
