@@ -49,11 +49,6 @@ header {
     /* padding-right: calc(var(--section-gap) / 2); */
   }
 
-  .bubble-tea{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 20px;
-  }
 
   .logo {
     margin: 0 2rem 0 0;

@@ -134,7 +134,7 @@ export default {
       version="1.1"
       id="svg2"
       xml:space="preserve"
-      width="130"
+      
     
       viewBox="0 0 155.98894 334.95495"
       sodipodi:docname="bubbletea_final.svg"
@@ -430,7 +430,7 @@ export default {
 
 <style scoped>
 .menu{
-  padding: 15px;
+  padding: 10px;
   border-radius: 10px;  
   background: #f9e7f5;
   min-height:390px;
@@ -494,5 +494,17 @@ input[type=radio]{
 }
 .text-result{
   height:100px;
+}
+
+#svg2{
+  width:100%;
+  max-width:150px;
+}
+
+
+@media (min-width: 1024px){
+  .menu{
+    padding:15px;
+  }
 }
 </style>
