@@ -10,7 +10,9 @@ I wanted to make a small project with Vue.JS, and be able to change the image de
 
 Inspirations for this project are : Adibu, Candy Crush.
 
-![img](preview2.png) 
+Demo can be seen [here](https://laurenceplatzer.com/bubble-tea) 🥤
+
+![img](preview3.png) 
 
 
 
